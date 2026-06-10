@@ -1,22 +1,22 @@
-# Project Map
+# Bản Đồ Dự Án
 
-This document provides a concise guide to the repository structure, execution flow, and generated artifacts.
+Tài liệu này mô tả nhanh cấu trúc repository, vai trò của từng nhóm file và luồng thực thi chính của dự án.
 
-## Main Execution Commands
+## Lệnh Chạy Chính
 
-Run the CO2 regression pipeline:
+Chạy pipeline hồi quy CO2:
 
 ```powershell
 python -m ml_coursework.co2
 ```
 
-Run the customer churn classification pipeline:
+Chạy pipeline phân loại churn:
 
 ```powershell
 python -m ml_coursework.churn
 ```
 
-Run a pipeline with the interactive figure viewer:
+Chạy pipeline kèm trình xem biểu đồ:
 
 ```powershell
 python -m ml_coursework.co2 --show
@@ -25,67 +25,67 @@ python -m ml_coursework.churn --show
 
 ## Source Code
 
-| File | Role |
+| File | Vai trò |
 | --- | --- |
-| `ml_coursework/co2.py` | End-to-end regression workflow for vehicle CO2 emissions. |
-| `ml_coursework/churn.py` | End-to-end binary classification workflow for telecom churn prediction. |
-| `ml_coursework/data_loader.py` | Centralized dataset loading and validation utilities. |
-| `ml_coursework/settings.py` | Shared project paths, random seed, train/test ratio, and cross-validation settings. |
-| `ml_coursework/visual_style.py` | Common chart theme and plotting utilities. |
-| `ml_coursework/figure_viewer.py` | Viewer for browsing generated figures in a single window. |
+| `ml_coursework/co2.py` | Triển khai toàn bộ luồng hồi quy dự đoán phát thải CO2 của xe. |
+| `ml_coursework/churn.py` | Triển khai toàn bộ luồng phân loại khách hàng rời bỏ dịch vụ. |
+| `ml_coursework/data_loader.py` | Tập trung logic nạp dữ liệu và kiểm tra sự tồn tại của file dữ liệu. |
+| `ml_coursework/settings.py` | Lưu cấu hình chung như đường dẫn, random seed, tỷ lệ train/test và số fold cross-validation. |
+| `ml_coursework/visual_style.py` | Thiết lập phong cách biểu đồ dùng chung cho toàn bộ dự án. |
+| `ml_coursework/figure_viewer.py` | Hiển thị nhiều biểu đồ trong một cửa sổ với nút chuyển qua lại. |
 
-## Data
+## Dữ Liệu
 
-| Path | Description |
+| Đường dẫn | Nội dung |
 | --- | --- |
-| `data/raw/FuelConsumptionCo2.csv` | Vehicle fuel consumption and CO2 emissions dataset. |
-| `data/raw/Telco-Customer-Churn.csv` | Telecom customer churn dataset. |
+| `data/raw/FuelConsumptionCo2.csv` | Dữ liệu mức tiêu thụ nhiên liệu và phát thải CO2 của xe. |
+| `data/raw/Telco-Customer-Churn.csv` | Dữ liệu khách hàng viễn thông phục vụ bài toán dự đoán churn. |
 
-## Notebooks
+## Notebook
 
-| Notebook | Description |
+| Notebook | Nội dung |
 | --- | --- |
-| `notebooks/co2/co2.ipynb` | Reproducible notebook for the CO2 regression project. |
-| `notebooks/churn/churn.ipynb` | Reproducible notebook for the churn classification project. |
+| `notebooks/co2/co2.ipynb` | Notebook có thể chạy lại cho bài toán hồi quy CO2. |
+| `notebooks/churn/churn.ipynb` | Notebook có thể chạy lại cho bài toán phân loại churn. |
 
-The notebooks mirror the Python pipelines and present the analysis in a report-friendly format.
+Notebook phản ánh lại các bước chính trong pipeline Python, đồng thời trình bày kết quả theo định dạng phù hợp cho báo cáo.
 
-## Reports
+## Báo Cáo Và Kết Quả
 
-| Path | Content |
+| Đường dẫn | Nội dung |
 | --- | --- |
-| `reports/figures/co2` | CO2 EDA charts, model comparison, residual analysis, and feature importance. |
-| `reports/figures/churn` | Churn EDA charts, model comparison, threshold analysis, ROC/PR curves, and confusion matrix. |
-| `reports/tables/co2` | Regression metrics, cross-validation results, tuning results, and error analysis. |
-| `reports/tables/churn` | Classification metrics, cross-validation results, threshold optimization, and error analysis. |
-| `reports/documents` | Technical documentation for the project. |
+| `reports/figures/co2` | Biểu đồ EDA, so sánh mô hình, phân tích residual và feature importance cho bài CO2. |
+| `reports/figures/churn` | Biểu đồ EDA, so sánh mô hình, ROC/PR curve, confusion matrix và feature importance cho bài churn. |
+| `reports/tables/co2` | Chỉ số hồi quy, kết quả cross-validation, kết quả tuning và phân tích lỗi. |
+| `reports/tables/churn` | Chỉ số phân loại, kết quả cross-validation, tối ưu ngưỡng và phân tích lỗi. |
+| `reports/documents` | Tài liệu kỹ thuật mô tả dự án. |
 
-## Submission Folders
+## Thư Mục Nộp
 
-| Path | Content |
+| Đường dẫn | Nội dung |
 | --- | --- |
-| `submissions/co2` | Standalone materials for the CO2 regression task. |
-| `submissions/churn` | Standalone materials for the churn classification task. |
+| `submissions/co2` | Bộ tài liệu tách riêng cho bài toán hồi quy CO2. |
+| `submissions/churn` | Bộ tài liệu tách riêng cho bài toán phân loại churn. |
 
-Each submission folder contains the relevant notebook, dataset, generated figures, evaluation tables, and dependency file.
+Mỗi thư mục nộp gồm notebook, dữ liệu, biểu đồ, bảng kết quả và file dependency tương ứng.
 
-## Execution Flow
+## Luồng Thực Thi
 
 ```text
-Raw data
-→ Data loading and validation
-→ Exploratory data analysis
-→ Preprocessing pipeline
-→ Train/test split
-→ Cross-validation model comparison
-→ Hyperparameter tuning
-→ Final test evaluation
-→ Figure and table export
+Dữ liệu gốc
+→ Nạp và kiểm tra dữ liệu
+→ Phân tích khám phá dữ liệu
+→ Tiền xử lý bằng pipeline
+→ Chia train/test
+→ So sánh mô hình bằng cross-validation
+→ Tối ưu siêu tham số
+→ Đánh giá trên tập test
+→ Xuất biểu đồ và bảng kết quả
 ```
 
-## Design Notes
+## Ghi Chú Thiết Kế
 
-- The two projects are independent but share the same coding style and project structure.
-- Configuration values are centralized in `settings.py` to keep execution reproducible.
-- The code separates reusable utilities from project-specific modeling logic.
-- Generated reports are stored outside the source code package to keep implementation and outputs clearly separated.
+- Hai bài toán độc lập nhưng dùng cùng một phong cách tổ chức code.
+- Các giá trị cấu hình được đặt trong `settings.py` để dễ kiểm soát và tái lập.
+- Code tiện ích được tách khỏi logic huấn luyện mô hình để tránh lặp lại.
+- Kết quả sinh ra được lưu trong `reports` để phân biệt rõ giữa source code và output.
