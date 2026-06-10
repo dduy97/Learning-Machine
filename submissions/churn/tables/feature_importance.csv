@@ -1,0 +1,16 @@
+feature,importance
+num__tenure,1.245207209825773
+cat__Contract_Two year,0.7592901502315573
+cat__Contract_Month-to-month,0.6684081690772504
+num__TotalCharges,0.5665304741661171
+cat__InternetService_Fiber optic,0.49754977279688345
+cat__InternetService_DSL,0.4575041516721742
+cat__PaymentMethod_Electronic check,0.24594523023868342
+cat__MultipleLines_No,0.2264298172005093
+cat__PaperlessBilling_No,0.22092314548114622
+cat__SeniorCitizen_0,0.1845168020000018
+cat__PhoneService_Yes,0.18318732712378114
+cat__OnlineSecurity_No,0.1807792934520994
+num__MonthlyCharges,0.17382533286760432
+cat__InternetService_No,0.16740436204026157
+cat__OnlineSecurity_No internet service,0.16740436204026157

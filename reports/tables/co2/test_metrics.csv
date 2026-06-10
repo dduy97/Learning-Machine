@@ -1,0 +1,2 @@
+model,test_mae,test_rmse,test_r2
+Linear Regression,3.5563427383448256,5.453124930656065,0.9921098874055269
