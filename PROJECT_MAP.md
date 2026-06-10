@@ -1,62 +1,91 @@
-# Sơ Đồ Dự Án
+# Project Map
 
-File này dùng để nhìn nhanh cấu trúc và vai trò từng phần trong dự án.
+This document provides a concise guide to the repository structure, execution flow, and generated artifacts.
 
-## Chạy Dự Án
+## Main Execution Commands
+
+Run the CO2 regression pipeline:
 
 ```powershell
 python -m ml_coursework.co2
+```
+
+Run the customer churn classification pipeline:
+
+```powershell
 python -m ml_coursework.churn
 ```
 
-Nếu muốn hiện biểu đồ:
+Run a pipeline with the interactive figure viewer:
 
 ```powershell
 python -m ml_coursework.co2 --show
 python -m ml_coursework.churn --show
 ```
 
-## Code Chính
+## Source Code
 
-- ml_coursework/co2.py: bài hồi quy CO2.
-- ml_coursework/churn.py: bài phân loại Churn.
-- ml_coursework/data_loader.py: nạp dữ liệu.
-- ml_coursework/settings.py: cấu hình chung.
-- ml_coursework/visual_style.py: giao diện biểu đồ.
+| File | Role |
+| --- | --- |
+| `ml_coursework/co2.py` | End-to-end regression workflow for vehicle CO2 emissions. |
+| `ml_coursework/churn.py` | End-to-end binary classification workflow for telecom churn prediction. |
+| `ml_coursework/data_loader.py` | Centralized dataset loading and validation utilities. |
+| `ml_coursework/settings.py` | Shared project paths, random seed, train/test ratio, and cross-validation settings. |
+| `ml_coursework/visual_style.py` | Common chart theme and plotting utilities. |
+| `ml_coursework/figure_viewer.py` | Viewer for browsing generated figures in a single window. |
 
-## Notebook
+## Data
 
-- notebooks/co2/co2.ipynb: notebook bài CO2.
-- notebooks/churn/churn.ipynb: notebook bài Churn.
+| Path | Description |
+| --- | --- |
+| `data/raw/FuelConsumptionCo2.csv` | Vehicle fuel consumption and CO2 emissions dataset. |
+| `data/raw/Telco-Customer-Churn.csv` | Telecom customer churn dataset. |
 
-Notebook là bản báo cáo có thể chạy được. Nó chứa giải thích, code, bảng kết quả, biểu đồ và kết luận.
+## Notebooks
 
-## Kết Quả
+| Notebook | Description |
+| --- | --- |
+| `notebooks/co2/co2.ipynb` | Reproducible notebook for the CO2 regression project. |
+| `notebooks/churn/churn.ipynb` | Reproducible notebook for the churn classification project. |
 
-- reports/figures/co2: biểu đồ bài CO2.
-- reports/figures/churn: biểu đồ bài Churn.
-- reports/tables/co2: bảng kết quả bài CO2.
-- reports/tables/churn: bảng kết quả bài Churn.
-- reports/documents: tài liệu Word hỗ trợ báo cáo và vấn đáp.
+The notebooks mirror the Python pipelines and present the analysis in a report-friendly format.
 
-## Bản Nộp
+## Reports
 
-- submissions/co2: bản nộp bài CO2.
-- submissions/churn: bản nộp bài Churn.
+| Path | Content |
+| --- | --- |
+| `reports/figures/co2` | CO2 EDA charts, model comparison, residual analysis, and feature importance. |
+| `reports/figures/churn` | Churn EDA charts, model comparison, threshold analysis, ROC/PR curves, and confusion matrix. |
+| `reports/tables/co2` | Regression metrics, cross-validation results, tuning results, and error analysis. |
+| `reports/tables/churn` | Classification metrics, cross-validation results, threshold optimization, and error analysis. |
+| `reports/documents` | Technical documentation for the project. |
 
-Mỗi thư mục bản nộp gồm notebook, dữ liệu, figures, tables, requirements, VIVA_NOTES và VIVA_QA.
+## Submission Folders
 
-## Luồng Hoạt Động
+| Path | Content |
+| --- | --- |
+| `submissions/co2` | Standalone materials for the CO2 regression task. |
+| `submissions/churn` | Standalone materials for the churn classification task. |
+
+Each submission folder contains the relevant notebook, dataset, generated figures, evaluation tables, and dependency file.
+
+## Execution Flow
 
 ```text
-Lệnh chạy
-→ nạp dữ liệu
-→ EDA
-→ xử lý dữ liệu
-→ chia train/test
-→ Pipeline tiền xử lý
-→ cross-validation
-→ tuning
-→ đánh giá test
-→ lưu bảng và biểu đồ
+Raw data
+→ Data loading and validation
+→ Exploratory data analysis
+→ Preprocessing pipeline
+→ Train/test split
+→ Cross-validation model comparison
+→ Hyperparameter tuning
+→ Final test evaluation
+→ Figure and table export
 ```
+
+## Design Notes
+
+- The two projects are independent but share the same coding style and project structure.
+- Configuration values are centralized in `settings.py` to keep execution reproducible.
+- The code separates reusable utilities from project-specific modeling logic.
+- Generated reports are stored outside the source code package to keep implementation and outputs clearly separated.

@@ -5,5 +5,6 @@ __pycache__/
 *.log
 .DS_Store
 Thumbs.db
-reports/documents/*van_dap*
-submissions/**/VIVA_*.md
+reports/documents/bo_*.docx
+submissions/**/*_NOTES.md
+submissions/**/*_QA.md

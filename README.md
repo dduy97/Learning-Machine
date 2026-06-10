@@ -1,116 +1,131 @@
-# Bài Tập Lớn Môn Học Máy
+# Machine Learning Projects: Vehicle CO2 Regression and Customer Churn Classification
 
-## Tổng Quan
+This repository contains two end-to-end machine learning projects developed with a consistent workflow: data exploration, preprocessing, model comparison, hyperparameter tuning, final evaluation, and report artifact generation.
 
-Dự án gồm hai bài học máy độc lập, đúng theo yêu cầu có một bài hồi quy và một bài phân loại.
+The project is organized as a reproducible analysis package. Each task can be executed independently from the command line and produces its own figures, evaluation tables, notebooks, and submission-ready outputs.
 
-- CO2: hồi quy, dự đoán lượng phát thải CO2 của xe.
-- Churn: phân loại nhị phân, dự đoán khách hàng có rời bỏ dịch vụ hay không.
+## Project Overview
 
-Mỗi bài có dữ liệu riêng, pipeline xử lý riêng, biểu đồ EDA riêng, mô hình riêng và bảng đánh giá riêng.
+| Project | Task Type | Objective | Final Model |
+| --- | --- | --- | --- |
+| Vehicle CO2 Emissions | Regression | Predict vehicle CO2 emissions from technical and fuel-consumption attributes. | Linear Regression |
+| Customer Churn | Binary Classification | Predict whether a telecom customer is likely to leave the service. | Logistic Regression |
 
-## Lệnh Chạy Nhanh
+## Key Results
 
-Chạy bài CO2:
+### Vehicle CO2 Emissions
+
+The CO2 regression project achieved strong predictive performance because vehicle emissions are highly related to fuel consumption and engine characteristics.
+
+| Metric | Value |
+| --- | ---: |
+| MAE | 3.56 |
+| RMSE | 5.45 |
+| R2 | 0.9921 |
+
+### Customer Churn
+
+The churn classification project focuses on identifying customers at risk of leaving. The final decision threshold was selected using validation performance to improve the balance between recall and F1-score.
+
+| Metric | Value |
+| --- | ---: |
+| Accuracy | 0.7495 |
+| Precision | 0.5182 |
+| Recall | 0.7661 |
+| F1-score | 0.6182 |
+| ROC-AUC | 0.8398 |
+
+## Methodology
+
+Both projects follow the same machine learning pipeline:
+
+1. Load raw datasets from `data/raw`.
+2. Inspect data quality, distributions, outliers, and feature relationships.
+3. Build exploratory visualizations for numerical and categorical variables.
+4. Split the dataset into training and testing sets using an 80/20 ratio.
+5. Apply preprocessing with scikit-learn pipelines.
+6. Compare multiple candidate models using cross-validation.
+7. Tune selected models with randomized hyperparameter search.
+8. Evaluate the best model on the hold-out test set.
+9. Export charts, metrics, model comparison tables, and analysis artifacts.
+
+## Repository Structure
+
+```text
+A49932_hocmay/
+├── data/raw/                 # Original datasets
+├── ml_coursework/            # Main Python package
+│   ├── co2.py                # CO2 regression pipeline
+│   ├── churn.py              # Churn classification pipeline
+│   ├── data_loader.py        # Dataset loading utilities
+│   ├── figure_viewer.py      # Interactive figure viewer
+│   ├── settings.py           # Shared paths and configuration
+│   └── visual_style.py       # Shared chart styling
+├── notebooks/                # Executable analysis notebooks
+├── reports/
+│   ├── documents/            # Technical report documents
+│   ├── figures/              # Generated visualizations
+│   └── tables/               # Generated evaluation tables
+├── submissions/              # Separated submission folders
+├── PROJECT_MAP.md            # Detailed project map
+└── requirements.txt          # Python dependencies
+```
+
+## Installation
+
+Create and activate a virtual environment, then install the required libraries.
+
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+## Running the Projects
+
+Run the CO2 regression project:
 
 ```powershell
 python -m ml_coursework.co2
 ```
 
-Chạy bài Churn:
+Run the churn classification project:
 
 ```powershell
 python -m ml_coursework.churn
 ```
 
-Chạy và mở cửa sổ xem biểu đồ có nút Previous/Next:
+Run a project and open the interactive chart viewer:
 
 ```powershell
 python -m ml_coursework.co2 --show
 python -m ml_coursework.churn --show
 ```
 
-## Cấu Trúc Dự Án
+## Output Artifacts
 
-```text
-A49932_hocmay/
-├── data/raw/                      # dữ liệu gốc
-├── ml_coursework/                 # code chính
-│   ├── co2.py                     # pipeline hồi quy CO2
-│   ├── churn.py                   # pipeline phân loại Churn
-│   ├── data_loader.py             # nạp dữ liệu
-│   ├── settings.py                # cấu hình đường dẫn và tham số chung
-│   └── visual_style.py            # style biểu đồ
-├── notebooks/
-│   ├── co2/co2.ipynb
-│   └── churn/churn.ipynb
-├── reports/
-│   ├── figures/                   # biểu đồ
-│   ├── tables/                    # bảng kết quả
-│   └── documents/                 # tài liệu Word hỗ trợ báo cáo
-└── submissions/
-    ├── co2/                       # bản nộp bài CO2
-    └── churn/                     # bản nộp bài Churn
-```
+After execution, the project writes results into the `reports` directory:
 
-## File Chính
+| Directory | Content |
+| --- | --- |
+| `reports/figures/co2` | EDA charts, model comparison charts, residual analysis, and feature importance for CO2 regression. |
+| `reports/figures/churn` | Class distribution, churn-rate analysis, ROC/PR curves, confusion matrix, and feature importance for churn classification. |
+| `reports/tables/co2` | Regression metrics, cross-validation results, tuning comparison, and error analysis. |
+| `reports/tables/churn` | Classification metrics, cross-validation results, threshold optimization, and error analysis. |
+| `reports/documents` | Technical project documentation. |
 
-- ml_coursework/co2.py: xử lý dữ liệu, EDA, huấn luyện, tuning, đánh giá và lưu kết quả cho bài CO2.
-- ml_coursework/churn.py: xử lý dữ liệu, EDA, huấn luyện, tuning threshold, đánh giá và lưu kết quả cho bài Churn.
-- ml_coursework/data_loader.py: kiểm tra thư mục, tải dữ liệu nếu thiếu và đọc CSV.
-- ml_coursework/settings.py: chứa đường dẫn, random seed, tỷ lệ train/test và số fold cross-validation.
-- ml_coursework/visual_style.py: định dạng thống nhất cho toàn bộ biểu đồ.
-- ml_coursework/figure_viewer.py: xem biểu đồ trong một cửa sổ thay vì mở nhiều tab.
+## Technical Highlights
 
-## Kết Quả Chính Hiện Tại
+- Reproducible train/test split through a fixed random seed.
+- Separate pipelines for regression and classification tasks.
+- Numerical and categorical preprocessing handled inside scikit-learn pipelines.
+- Cross-validation used before final test evaluation to reduce overfitting risk.
+- Hyperparameter tuning included for model selection and performance improvement.
+- Clear separation between source code, raw data, notebooks, reports, and submission outputs.
 
-### CO2
+## Dependencies
 
-- Mô hình tốt nhất: Linear Regression.
-- MAE: khoảng 3.56.
-- RMSE: khoảng 5.45.
-- R2: khoảng 0.9921.
-
-Ý nghĩa: mô hình dự đoán CO2 rất tốt vì phát thải CO2 có quan hệ gần tuyến tính với mức tiêu thụ nhiên liệu và dung tích động cơ.
-
-### Churn
-
-- Mô hình tốt nhất: Logistic Regression.
-- Accuracy: khoảng 0.7495.
-- Precision: khoảng 0.5182.
-- Recall: khoảng 0.7661.
-- F1-score: khoảng 0.6182.
-- ROC-AUC: khoảng 0.8398.
-
-Ý nghĩa: mô hình ưu tiên phát hiện khách hàng có nguy cơ rời bỏ, nên Recall và F1-score quan trọng hơn Accuracy đơn thuần.
-
-## Notebook Và Bản Nộp
-
-Notebook chính:
-
-- notebooks/co2/co2.ipynb
-- notebooks/churn/churn.ipynb
-
-Bản nộp đã đóng gói:
-
-- submissions/co2
-- submissions/churn
-
-Mỗi thư mục bản nộp gồm notebook, dữ liệu, biểu đồ, bảng kết quả, requirements và ghi chú vấn đáp.
-
-## Quy Trình Phân Tích
-
-1. Nạp dữ liệu từ data/raw.
-2. Khảo sát dữ liệu và vẽ EDA.
-3. Làm sạch dữ liệu và tách biến đầu vào, biến mục tiêu.
-4. Chia train/test theo tỷ lệ 80/20.
-5. Xây dựng Pipeline tiền xử lý bằng scikit-learn.
-6. So sánh nhiều mô hình bằng cross-validation.
-7. Tối ưu siêu tham số bằng RandomizedSearchCV.
-8. Đánh giá mô hình tốt nhất trên tập test.
-9. Lưu biểu đồ, bảng metric, feature importance và phân tích lỗi.
-
-## Thư Viện Sử Dụng
+The project uses the following core libraries:
 
 - pandas
 - numpy
@@ -118,6 +133,6 @@ Mỗi thư mục bản nộp gồm notebook, dữ liệu, biểu đồ, bảng k
 - matplotlib
 - seaborn
 
-## Ghi Chú Vấn Đáp
+## License and Data
 
-Khi trình bày, nên chạy từng bài riêng bằng python -m ml_coursework.co2 và python -m ml_coursework.churn. Nếu thầy hỏi chi tiết, mở notebook tương ứng để chỉ rõ từng bước: EDA, pipeline, tuning, đánh giá và kết luận.
+The repository is prepared for academic coursework and demonstration purposes. The datasets are included locally under `data/raw` to keep the project reproducible.
